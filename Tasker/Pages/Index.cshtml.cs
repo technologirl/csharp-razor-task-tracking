@@ -4,26 +4,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 
 namespace Tasker.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
-        private readonly ILogger<IndexModel> _logger;
+        public IEnumerable<Task> Tasks { get; set; }
 
-        public List<Task> Tasks { get; set; }
+        private ApplicationDbContext _context;
 
-        public IndexModel(ILogger<IndexModel> logger, ApplicationDbContext context)
+        public IndexModel(ApplicationDbContext context)
         {
             _context = context;
-            _logger = logger;
         }
 
         public void OnGet()
         {
-            Tasks = _context.Tasks.ToList();
+            Tasks = _context.Tasks.OrderBy(x => x.Priority);
         }
     }
 }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,15 +25,14 @@ namespace Tasker.Pages
 
         public IActionResult OnPost()
         {
-            if (ModelState.IsValid)
-            {
-                _context.Tasks.Add(NewTask);
-                _context.SaveChanges();
-                return RedirectToPage("Index");
-            } else
+            if (!ModelState.IsValid)
             {
                 return Page();
             }
+
+            _context.Tasks.Add(NewTask);
+            _context.SaveChanges();
+            return RedirectToPage("Index");
         }
     }
 }
