@@ -93,3 +93,7 @@ td {
 input[type=submit] {
     margin-top: 20px;
 }
+
+th {
+    min-width: 100px;
+}
