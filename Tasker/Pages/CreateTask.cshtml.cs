@@ -30,15 +30,13 @@ namespace Tasker.Pages
             { 
                 return Page();
             }
+            else
+            {
                 _context.Tasks.Add(NewTask);
                 _context.SaveChanges();
-                return RedirectToPage("Index");  
-        }
-            
+                return RedirectToPage("Index");
+            }
                
-            
         }
-
-        
     }
 }
